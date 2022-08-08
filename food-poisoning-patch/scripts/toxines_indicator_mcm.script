@@ -1,0 +1,13 @@
+local cache = {}
+
+do
+    local ini_poison = ini_file_ex("items\\settings\\toxins.ltx")
+    local data = ini_poison:collect_section("food_toxicity")
+    for sec, stats in pairs(data) do
+        cache[sec] = str_explode(stats, ",")[1]
+    end
+end
+
+function get_item_toxines(sec)
+    return cache[sec]
+end
